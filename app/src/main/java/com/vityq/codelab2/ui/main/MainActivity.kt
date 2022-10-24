@@ -10,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.vityq.codelab2.ui.presentation.mainscreen.MainScreen
 import com.vityq.codelab2.ui.theme.CodeLab2Theme
 
 class MainActivity : ComponentActivity() {
