@@ -7,10 +7,14 @@ import com.vityq.codelab2.model.repository.WeatherRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class SearchViewModel(): ViewModel() {
     val repo = WeatherRepository()
     var date = mutableStateListOf<String>()
+    var dateFormatted = mutableStateListOf<String>()
     var tempMax = mutableStateListOf<Double>()
     var tempMin = mutableStateListOf<Double>()
     var weathercode = mutableStateListOf<Int>()
@@ -19,10 +23,19 @@ class SearchViewModel(): ViewModel() {
         getDailyWeather()
     }
 
+    fun formatDate(date: String): String {
+        val date2 = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+        val str = date2.format(DateTimeFormatter.ofPattern("d, EEEE"))
+        return str
+    }
+
     private fun getDailyWeather() {
         CoroutineScope(Dispatchers.Default).launch {
-            val response = repo.getDailyWeather(52.52f, 13.41f)
+            val response = repo.getDailyWeather(59.57f, 30.19f)
             date.addAll(response.daily.time)
+            response.daily.time.forEach {
+                dateFormatted.add(formatDate(it))
+            }
             tempMax.addAll(response.daily.temperature_2m_max)
             tempMin.addAll(response.daily.temperature_2m_min)
             weathercode.addAll(response.daily.weathercode)

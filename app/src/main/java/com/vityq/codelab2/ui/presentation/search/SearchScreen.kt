@@ -1,6 +1,7 @@
 package com.vityq.codelab2.ui.presentation
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -15,6 +16,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.vityq.codelab2.ui.presentation.search.SearchViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -31,7 +33,7 @@ fun SearchScreen(viewModel: SearchViewModel = viewModel()) {
             DailyWeatherCard(
                 tempMax = viewModel.tempMax[index].toInt(),
                 tempMin = viewModel.tempMin[index].toInt(),
-                date = viewModel.date[index],
+                date = viewModel.dateFormatted[index],
                 weatherCode = viewModel.weathercode[index]
             )
         }
@@ -50,7 +52,7 @@ fun DailyWeatherCard(tempMax: Int, tempMin: Int, date: String, weatherCode: Int)
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.padding(horizontal = 16.dp)
         ) {
-            Text(text = "Понедельник, 4")
+            Text(text = date)
             Spacer(modifier = Modifier.weight(1f))
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(text = tempMax.toString())
