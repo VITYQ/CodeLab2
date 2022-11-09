@@ -19,12 +19,13 @@ class MainViewModel: ViewModel() {
     private val repository = WeatherRepository()
 
     init {
-        fetchCurrentWeather()
+        //fetchCurrentWeather()
+
     }
 
     private fun fetchCurrentWeather() {
         CoroutineScope(Dispatchers.Default).launch {
-            currentWeather = repository.getCurrentWeather(2643743)
+//            currentWeather = repository.getCurrentWeather(2643743)
             currentTemperature = (currentWeather!!.main.temp - 270).toInt()
             feelsLikeTemperature = (currentWeather!!.main.feels_like - 270).toInt()
             Log.d("currWeather", "weather: $currentWeather")

@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.vityq.codelab2.ui.presentation.SearchScreen
 import com.vityq.codelab2.ui.presentation.mainscreen.MainScreen
 
 @Composable
@@ -13,7 +14,7 @@ fun CodeLabNavGraph(navController: NavHostController) {
             MainScreen()
         }
         composable(BottomNavItems.SearchScreen.route) {
-            // Еще экран
+            SearchScreen()
         }
         composable(BottomNavItems.SettingsScreen.route) {
             // Еще экран
